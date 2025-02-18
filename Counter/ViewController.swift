@@ -9,32 +9,26 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet var changeButton: UIButton!
-    @IBOutlet var counterLabel: UILabel!
-    @IBOutlet var resetBut: UIButton!
-    @IBOutlet var minusButton: UIButton!
-    @IBOutlet var plusButton: UIButton!
-    @IBOutlet var textStory: UITextView!
+    @IBOutlet private var changeButton: UIButton!
+    @IBOutlet private var counterLabel: UILabel!
+    @IBOutlet private var resetBut: UIButton!
+    @IBOutlet private var minusButton: UIButton!
+    @IBOutlet private var plusButton: UIButton!
+    @IBOutlet private var textStory: UITextView!
     
     private var count = 0
     private var counter: Int = 0
     
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-      //  changeButton.backgroundColor = UIColor .gray
         counterLabel.text = "Значение счётчика: 0"
-       // minusButton.backgroundColor = UIColor .blue
-      //  plusButton.backgroundColor = UIColor .red
         textStory.text = "История изменений:"
         textStory.isEditable = false
         textStory.isScrollEnabled = true
         textStory.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 15.0, right: 0.0)
     }
     
-    func addNewMessage(_ message: String) {
+    private func addNewMessage(_ message: String) {
         
         textStory.text += "\(message)"
         
@@ -42,7 +36,7 @@ class ViewController: UIViewController {
         textStory.scrollRangeToVisible(range)
     }
     
-    func addMessageWithDate(message: String) {
+   private func addMessageWithDate(message: String) {
        
         let currentDate = Date()
 
@@ -58,13 +52,13 @@ class ViewController: UIViewController {
     }
 
     
-    @IBAction func buttonTap(_ sender: Any) {
+    @IBAction private func buttonTap(_ sender: Any) {
         count += 1
         counter = count
         counterLabel.text = "Значение счётчика: " + String(count)
     }
     
-    @IBAction func resetButton(_ sender: Any) {
+    @IBAction private func resetButton(_ sender: Any) {
         count = 0
         counter = 0
         counterLabel.text = "Значение счётчика: 0"
@@ -72,7 +66,7 @@ class ViewController: UIViewController {
         addMessageWithDate(message: "")
         textStory.text += "значение сброшено"
     }
-    @IBAction func plusAction(_ sender: Any) {
+    @IBAction private func plusAction(_ sender: Any) {
         counter += 1
         count = counter
         counterLabel.text = "Значение счётчика: " + String(count)
@@ -81,7 +75,7 @@ class ViewController: UIViewController {
         textStory.text += "значение изменено на +1"
         
     }
-    @IBAction func minusAction(_ sender: Any) {
+    @IBAction private func minusAction(_ sender: Any) {
         if counter > 0 {
             counter -= 1
             count = counter

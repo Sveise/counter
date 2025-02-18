@@ -22,19 +22,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         counterLabel.text = "Значение счётчика: 0"
-        textStory.text = "История изменений:"
+        textStory.text = "История изменений:\n"
         textStory.isEditable = false
         textStory.isScrollEnabled = true
         textStory.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 15.0, right: 0.0)
     }
     
-    private func addNewMessage(_ message: String) {
-        
-        textStory.text += "\(message)"
-        
-        let range = NSRange(location: textStory.text.count - 1, length: 0)
-        textStory.scrollRangeToVisible(range)
-    }
     
    private func addMessageWithDate(message: String) {
        
@@ -46,9 +39,12 @@ class ViewController: UIViewController {
 
         let formattedDate = dateFormatter.string(from: currentDate)
 
-        let messageWithDate = "\(formattedDate) : \(message)"
+        let messageWithDate = "\(formattedDate) : \(message)\n"
         
         textStory.text += "\(messageWithDate)"
+       
+       let range = NSRange(location: textStory.text.count - 1, length: 1)
+       textStory.scrollRangeToVisible(range)
     }
 
     
@@ -62,17 +58,13 @@ class ViewController: UIViewController {
         count = 0
         counter = 0
         counterLabel.text = "Значение счётчика: 0"
-        addNewMessage("\n")
-        addMessageWithDate(message: "")
-        textStory.text += "значение сброшено"
+        addMessageWithDate(message: "значение сброшено")
     }
     @IBAction private func plusAction(_ sender: Any) {
         counter += 1
         count = counter
         counterLabel.text = "Значение счётчика: " + String(count)
-        addNewMessage("\n")
-        addMessageWithDate(message: "")
-        textStory.text += "значение изменено на +1"
+        addMessageWithDate(message: "значение изменено на +1")
         
     }
     @IBAction private func minusAction(_ sender: Any) {
@@ -80,14 +72,10 @@ class ViewController: UIViewController {
             counter -= 1
             count = counter
             counterLabel.text = "Значение счётчика: " + String(count)
-            addNewMessage("\n")
-            addMessageWithDate(message: "")
-            textStory.text += "значение изменено на -1"
+            addMessageWithDate(message: "значение изменено на -1")
            
         } else {
-            addNewMessage("\n")
-            addMessageWithDate(message: "")
-            textStory.text += "попытка уменьшить значение счётчика ниже 0"
+            addMessageWithDate(message: "попытка уменьшить значение счётчика ниже 0")
         }
     }
     

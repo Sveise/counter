@@ -78,6 +78,5 @@ class ViewController: UIViewController {
             addMessageWithDate(message: "попытка уменьшить значение счётчика ниже 0")
         }
     }
-    
 }
 
